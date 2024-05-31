@@ -81,9 +81,75 @@ var FPSPEED = []string{
 	"654.roms_s",
 }
 
+// 400.perlbench 	C 	PERL Programming Language
+// 401.bzip2 	C 	Compression
+// 403.gcc 	C 	C Compiler
+// 429.mcf 	C 	Combinatorial Optimization
+// 445.gobmk 	C 	Artificial Intelligence: go
+// 456.hmmer 	C 	Search Gene Sequence
+// 458.sjeng 	C 	Artificial Intelligence: chess
+// 462.libquantum 	C 	Physics: Quantum Computing
+// 464.h264ref 	C 	Video Compression
+// 471.omnetpp 	C++ 	Discrete Event Simulation
+// 473.astar 	C++ 	Path-finding Algorithms
+// 483.xalancbmk 	C++ 	XML Processing
+var INT2006 = []string{
+	"400.perlbench",
+	"401.bzip2",
+	"403.gcc",
+	"429.mcf",
+	"445.gobmk",
+	"456.hmmer",
+	"458.sjeng",
+	"462.libquantum",
+	"464.h264ref",
+	"471.omnetpp",
+	"473.astar",
+	"483.xalancbmk",
+}
+
+// 410.bwaves 	Fortran 	Fluid Dynamics
+// 416.gamess 	Fortran 	Quantum Chemistry
+// 433.milc 	C 	Physics: Quantum Chromodynamics
+// 434.zeusmp 	Fortran 	Physics / CFD
+// 435.gromacs 	C/Fortran 	Biochemistry/Molecular Dynamics
+// 436.cactusADM 	C/Fortran 	Physics / General Relativity
+// 437.leslie3d 	Fortran 	Fluid Dynamics
+// 444.namd 	C++ 	Biology / Molecular Dynamics
+// 447.dealII 	C++ 	Finite Element Analysis
+// 450.soplex 	C++ 	Linear Programming, Optimization
+// 453.povray 	C++ 	Image Ray-tracing
+// 454.calculix 	C/Fortran 	Structural Mechanics
+// 459.GemsFDTD 	Fortran 	Computational Electromagnetics
+// 465.tonto 	Fortran 	Quantum Chemistry
+// 470.lbm 	C 	Fluid Dynamics
+// 481.wrf 	C/Fortran 	Weather Prediction
+// 482.sphinx3 	C 	Speech recognition
+var FP2006 = []string{
+	"410.bwaves",
+	"416.gamess",
+	"433.milc",
+	"434.zeusmp",
+	"435.gromacs",
+	"436.cactusADM",
+	"437.leslie3d",
+	"444.namd",
+	"447.dealII",
+	"450.soplex",
+	"453.povray",
+	"454.calculix",
+	"459.GemsFDTD",
+	"465.tonto",
+	"470.lbm",
+	"481.wrf",
+	"482.sphinx3",
+}
+
 var ALLINT = append(INTRATE, INTSPEED...)
 var ALLFP = append(FPRATE, FPSPEED...)
-var ALL = append(ALLINT, ALLFP...)
+var ALL2006 = append(INT2006, FP2006...)
+var ALL2017 = append(ALLINT, ALLFP...)
+var ALL = append(ALL2006, ALL2017...)
 
 var Benchmarks2Suite = map[string]string{
 	"500.perlbench_r": "intrate",
@@ -129,6 +195,35 @@ var Benchmarks2Suite = map[string]string{
 	"644.nab_s":       "fpspeed",
 	"649.fotonik3d_s": "fpspeed",
 	"654.roms_s":      "fpspeed",
+	"400.perlbench":   "int2006",
+	"401.bzip2":       "int2006",
+	"403.gcc":         "int2006",
+	"429.mcf":         "int2006",
+	"445.gobmk":       "int2006",
+	"456.hmmer":       "int2006",
+	"458.sjeng":       "int2006",
+	"462.libquantum":  "int2006",
+	"464.h264ref":     "int2006",
+	"471.omnetpp":     "int2006",
+	"473.astar":       "int2006",
+	"483.xalancbmk":   "int2006",
+	"410.bwaves":      "fp2006",
+	"416.gamess":      "fp2006",
+	"433.milc":        "fp2006",
+	"434.zeusmp":      "fp2006",
+	"435.gromacs":     "fp2006",
+	"436.cactusADM":   "fp2006",
+	"437.leslie3d":    "fp2006",
+	"444.namd":        "fp2006",
+	"447.dealII":      "fp2006",
+	"450.soplex":      "fp2006",
+	"453.povray":      "fp2006",
+	"454.calculix":    "fp2006",
+	"459.GemsFDTD":    "fp2006",
+	"465.tonto":       "fp2006",
+	"470.lbm":         "fp2006",
+	"481.wrf":         "fp2006",
+	"482.sphinx3":     "fp2006",
 }
 
 func IsBenchmark(benchmark string) bool {

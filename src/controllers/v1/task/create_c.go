@@ -21,6 +21,7 @@ import (
 // TODO
 // var qemuPath = "/home/sihuan/PLCT/spec/MyGO/data/qemu/"
 var qemuPath = "/home/sihuan/project/mygo/data/qemu/"
+var sysroot = "/opt/riscv/sysroot"
 
 // TODO
 var specCPURUN = "data/runenv/"
@@ -233,6 +234,8 @@ func CreateTask(c *gin.Context) {
 				qemuTask.Name = benchmark
 			}
 			cmdline = strings.TrimSpace(cmdline)
+			//清理关闭标准输入 0<&-，2006 适配
+			cmdline = strings.ReplaceAll(cmdline, "0<&-", "")
 			cmdline = strings.ReplaceAll(cmdline, "  ", " ")
 			temp := strings.Split(cmdline, "2>>")
 			if len(temp) == 2 {
@@ -279,7 +282,7 @@ func runQemuTask(q *models.QemuTask) {
 		<-qemuPool
 	}()
 	// -s 大小需要设置 TODO
-	cmd := exec.Command(qemuPath+"bin/qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", "-cpu", "rv64,v=true,vext_spec=v1.0", "-s", "819200000000", "-plugin", qemuPath+"/plugins/libinsn.so", "-d", "plugin")
+	cmd := exec.Command(qemuPath+"bin/qemu-riscv64", "-L", sysroot, "-cpu", "rv64,v=true,vext_spec=v1.0", "-s", "819200000000", "-plugin", qemuPath+"/plugins/libinsn.so", "-d", "plugin")
 	args := strings.Split(q.Cmd, " ")
 	cmd.Args = append(cmd.Args, args...)
 	cmd.Dir = q.Path
